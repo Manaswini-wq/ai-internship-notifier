@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AI Internship Matcher Form</title>
+</head>
+
+<body>
+  <h2>Submit Your Profile</h2>
+  <form id="internship-form">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <input type="email" name="email" placeholder="Your Email" required><br>
+    <input type="text" name="college" placeholder="College Name" required><br>
+    <input type="text" name="skills" placeholder="Skills (comma separated)" required><br>
+    <input type="text" name="interests" placeholder="Career Interests" required><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById('internship-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        college: e.target.college.value,
+        skills: e.target.skills.value,
+        interests: e.target.interests.value
+      };
+
+      await fetch('https://internship-ai-connector.app.n8n.cloud/webhook-test/internship-profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      alert('Submitted!');
+      e.target.reset();
+    });
+  </script>
+
+</body>
