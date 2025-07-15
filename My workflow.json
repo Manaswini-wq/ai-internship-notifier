@@ -1,0 +1,126 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "internship-profile",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "20aef406-147e-4335-9dc7-755c264c5f3b",
+      "name": "Webhook",
+      "webhookId": "15f72f6a-0f5b-4d9d-aa13-252df9f39a41"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appx5rDZVOtknHhDy",
+          "mode": "list",
+          "cachedResultName": "AI Internship Matcher",
+          "cachedResultUrl": "https://airtable.com/appx5rDZVOtknHhDy"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl4Qc0Axs1574RyE",
+          "mode": "list",
+          "cachedResultName": "Applicants",
+          "cachedResultUrl": "https://airtable.com/appx5rDZVOtknHhDy/tbl4Qc0Axs1574RyE"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "How to Set It": "{{$json[\"career_intrests\"]}}",
+            "Field Type": "Long Text",
+            "Field name": "Career Intrests"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Field name",
+              "displayName": "Field name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Field Type",
+              "displayName": "Field Type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "How to Set It",
+              "displayName": "How to Set It",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "4c881dc8-5c97-4c06-a909-ed32bb6a3bfe",
+      "name": "Create a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "ZWSUW9y7QSsbL56w",
+          "name": "Airtable Personal Access Token account 4"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "df23b538-8308-47e9-a4df-216c3bfc176a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b90d46770a0c8a71a5e668efa9109c35b6287d0c72874eb275d815330f1888dd"
+  },
+  "id": "I1RpEtrlsnQv33Uo",
+  "tags": []
+}
