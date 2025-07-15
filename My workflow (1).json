@@ -1,0 +1,113 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "internship-profile",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "20aef406-147e-4335-9dc7-755c264c5f3b",
+      "name": "Webhook",
+      "webhookId": "15f72f6a-0f5b-4d9d-aa13-252df9f39a41"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appx5rDZVOtknHhDy",
+          "mode": "list",
+          "cachedResultName": "AI Internship Matcher",
+          "cachedResultUrl": "https://airtable.com/appx5rDZVOtknHhDy"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblbK3Z5uOgsELpwH",
+          "mode": "list",
+          "cachedResultName": "Internships",
+          "cachedResultUrl": "https://airtable.com/appx5rDZVOtknHhDy/tblbK3Z5uOgsELpwH"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a83588f3-e9e1-4d7d-9e44-c9c3b683e489",
+      "name": "Search records",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "ZWSUW9y7QSsbL56w",
+          "name": "Airtable Personal Access Token account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "2009632050",
+        "text": "=📣 New Internship Applicant!\n\n🧑 Name: {{$json[\"Name\"] || \"Not provided\"}}  \n🏫 College: {{$json[\"College\"] || \"Not provided\"}}  \n📧 Email: {{$json[\"Email\"] || \"Not provided\"}}  \n🛠 Skills: {{$json[\"Skills\"] || \"Not provided\"}}  \n💡 Career Interests: {{$json[\"Career Interests\"] || \"Not provided\"}}  \n🕒 Submitted At: {{$json[\"Submitted At\"] || \"Unknown\"}}\n\n_This message was sent automatically with n8n_\n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "36da5733-1e58-480d-83f5-65fd5bdf40a3",
+      "name": "Send a text message",
+      "webhookId": "be86b15c-eb9b-474f-9b0d-476cf9422428",
+      "credentials": {
+        "telegramApi": {
+          "id": "DCuPIQevIBNkylfg",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "469070b6-e725-4271-a7f3-a0bd58b7bec1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b90d46770a0c8a71a5e668efa9109c35b6287d0c72874eb275d815330f1888dd"
+  },
+  "id": "I1RpEtrlsnQv33Uo",
+  "tags": []
+}
